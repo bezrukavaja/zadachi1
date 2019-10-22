@@ -1,0 +1,99 @@
+#  1
+
+av, ah = map(int, input().split())
+bv, bh = map(int, input().split())
+
+mx = min(abs(av - bv), abs(ah - bh))
+
+a = abs(bv - av) - mx
+b = abs(bh - ah) - mx
+
+print(sum([mx, a, b]))
+
+
+
+
+#  2, 3
+
+def fun(x):
+    return int(x)
+
+
+mac = list(map(fun, input().split('.')))
+
+st = set()
+
+for i in range(int(input())):
+    ls = list(map(fun, input().split('.')))
+
+    tp = []
+    for k in range(4):
+        tp.append(str(mac[k] & ls[k]))
+    st.add('.'.join(tp))
+
+print(len(st))
+
+
+
+
+#  4
+
+lst = []
+
+for i in range(int(input())):
+    lst.append(input().split()[-1][-2:])
+    if len(lst[i]) != 2:
+        print('No')
+        exit()
+
+if lst[0] == lst[1] and lst[2] == lst[3]:
+    print('Yes')
+elif lst[0] == lst[2] and lst[1] == lst[3]:
+    print('Yes')
+elif lst[0] == lst[3] and lst[1] == lst[2]:
+    print('Yes')
+elif lst[0] == lst[1] == lst[2] == lst[3]:
+    print('Yes')
+else:
+    print('No')
+    
+    
+    
+    #  5, 6
+
+def check(x1, x2, x3, x4):
+    global tr
+    for u in range(n // 4):
+        if not (lst[u * 4 + x1] == lst[u * 4 + x2] and lst[u * 4 + x3] == lst[u * 4 + x4]):
+            res.append(False)
+            return
+    res.append(True)
+
+
+res = []
+lst = []
+n = int(input())
+tr = True
+
+for i in range(n):
+    lst.append(input().split()[-1][-2:])
+    if len(lst[i]) != 2:
+        print('No')
+        exit()
+
+check(0, 1, 2, 3)
+check(0, 2, 1, 3)
+check(0, 3, 1, 2)
+
+a = False
+for u in range(n // 4):
+    if not (lst[u * 4 + 0] == lst[u * 4 + 1] == lst[u * 4 + 2] == lst[u * 4 + 3]):
+        res.append(False)
+        a = True
+if not a:
+    res.append(True)
+
+if any(res):
+    print('Yes')
+else:
+    print('No')
